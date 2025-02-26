@@ -1,0 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/calibre');
+
+.nt-lead .nt-lead-textos h2 {
+    font-family: 'Calibre Semibold';
+    font-style: normal;
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    line-height: 130%;
+}
+
+.nt-lead .nt-lead-textos p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px !important;
+    line-height: 150%;
+    color: #222222;
+}
+
+.nt-lead .nt-lead-textos strong,
+.nt-lead .nt-lead-textos p > strong {
+    font-family: 'Calibre Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px !important;
+    line-height: 130%;
+    color: #222222;
+}

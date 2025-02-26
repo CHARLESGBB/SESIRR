@@ -1,0 +1,24 @@
+/* Estilos para telas menores ou iguais a 660px */
+@media (max-width: 660px) {
+    .accessibility-height {
+        min-height: 25px;
+        height: auto;
+    }
+
+    .site-accessibility {
+        min-height: 50px;
+        height: auto;
+    }
+
+    #audiome-player {
+        position: relative;
+        top: 15%;
+    }
+}
+
+/* Estilos para telas maiores ou iguais a 661px */
+@media (min-width: 661px) {
+    .site-accessibility .s-accessibility .shortcuts > li:last-child {
+        margin-left: 32px;
+    }
+}

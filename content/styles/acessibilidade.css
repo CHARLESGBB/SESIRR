@@ -1,0 +1,149 @@
+/* Defina a imagem de fundo. */
+.image-size-backgroud-6046506 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-6046506 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+.background-image-6046505 {
+    background-image: url('');
+}
+
+.image-size-backgroud-6046505 {
+    background-size: None;
+}
+
+
+#common-space-3991684 {
+    height: 30px;
+}
+
+/* Defina a imagem de fundo. */
+.image-size-backgroud-5643098 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-5643098 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+/* Defina a imagem de fundo. */
+.image-size-backgroud-5643101 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-5643101 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+/* Defina a imagem de fundo. */
+.image-size-backgroud-5643103 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-5643103 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+/* Defina a imagem de fundo. */
+.image-size-backgroud-5643105 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-5643105 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+
+.alt-ta-in {
+    display: flex;
+    margin-left: -32px;
+    align-items: baseline;
+}
+
+.mt-4px-negative {
+    margin-top: -4px !important;
+}
+
+
+.d-flexx {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.socials-draw {
+    /*border: 1px solid white;
+            border-radius: 50px;*/
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.socials-draw div {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+}
+
+.socials-draw:hover {
+    border: 1px solid #337ab7;
+}
+
+.socials-draw:hover div {
+    background-color: #337ab7;
+}
+
+/* Defina a imagem de fundo. */
+.image-size-backgroud-392778 {
+    background-image: url('');
+}
+
+/*Default ou Centralizado - igual ao plugin de coluna*/
+.image-size-backgroud-392778 {
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100%;
+}
+
+
+.social a {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.social a:hover {
+    text-decoration: none;
+}
+
+.social a:hover i::before {
+    color: #337ab7 !important;
+}
+
+.social {
+    display: flex;
+    flex-wrap: wrap;
+}

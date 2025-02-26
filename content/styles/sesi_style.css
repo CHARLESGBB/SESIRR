@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+.materia .label {
+    font-size: 14px !important
+}
+
+.back-top {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    z-index: 99;
+    right: 25px;
+    bottom: -25px;
+    height: 50px;
+    width: 50px;
+    transition: all .5s ease-in-out;
+    transition-delay: .2s;
+    background: url("https://staticportaldaindustria.azureedge.net/static/img/backtop.png");
+    border: 1px solid white
+}
+
+.back-top:hover {
+    background: url("https://staticportaldaindustria.azureedge.net/static/img/hover_sesi_backtop.png");
+    cursor: pointer;
+    border: 1px solid white
+}
+
+.back-top.show {
+    visibility: visible;
+    cursor: pointer;
+    bottom: 25px;
+    opacity: 50
+}
+
+.back-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none
+}
+
+.top-bar {
+    background: #075c99;
+    border-color: #075c99 !important
+}
+
+.casa-color,
+.casa-color *,
+.casa-color a:focus,
+.casa-color a:hover,
+.casa-color-hover:hover,
+a:hover,
+.active-item,
+.page-links .p-links-hold>span .logo-sistema-s,
+.page-links .p-links-hold>span:hover,
+.page-links .p-links-hold>span:hover .logo-sistema-s.active,
+.tabs-noticia-lateral .nav li.active a,
+.aside-lo-1 ul li:nth-child(1),
+.tabs header ul li * {
+    color: #075c99 !important
+}
+
+main a,
+.main p a,
+.panel-body a {
+    color: #075c99
+}
+
+.casa-color-light,
+.casa-color-light *,
+.casa-color-light a:hover,
+.casa-color-light-hover:hover {
+    color: #fdd3a0 !important
+}
+
+.casa-color-bg-hover:hover {
+    background: #075c99
+}
+
+.hat {
+    border-color: #075c99 !important
+}
+
+.casa-color-bg-dark,
+.casa-color-bg,
+.bt-color,
+.footer,
+.pagination>li.active a,
+.canal-02-ultimas-noticias .carousel-indicators li.active,
+.testimon .carousel-indicators li.active,
+.tslider .carousel-indicators li.active {
+    background-color: #075c99 !important;
+    color: #fff !important
+}
+
+.casa-color-bg-dark,
+.footer-mid,
+.slider #slider-thumbs .bts li.active,
+a.bt-color:hover,
+.bt-color:hover,
+a.bt-color-3:hover,
+.bt-color-3:hover {
+    background: #075c99 !important
+}
+
+.slider #slider-thumbs .bts li,
+.carousel-indicators li.active {
+    border-color: #075c99;
+    background-color: #075c99
+}
+
+.newsletter div.head:after {
+    border-color: transparent transparent transparent #faae1a
+}
+
+.top-bar nav ul li.active * {
+    color: #ffe556
+}
+
+.casa-color-border {
+    border-color: #075c99 !important
+}
+
+.casa-color-border-seta-top {
+    border-color: transparent transparent #075c99 transparent !important
+}
+
+.casa-color-border-seta-right {
+    border-color: transparent transparent transparent #075c99 !important
+}
+
+.casa-color-border-seta-bottom {
+    border-color: #075c99 transparent transparent transparent !important
+}
+
+.casa-color-border-seta-left {
+    border-color: transparent #075c99 transparent transparent !important
+}
+
+.casa-color-border-dark {
+    border-color: #075c99 !important
+}
+
+.gradient~.casa-color-border {
+    border-color: #075c99 !important
+}
+
+.gradient~.casa-color-border-seta-top {
+    border-color: transparent transparent #075c99 transparent !important
+}
+
+.gradient~.casa-color-border-seta-right {
+    border-color: transparent transparent transparent #075c99 !important
+}
+
+.gradient~.casa-color-border-seta-bottom {
+    border-color: #075c99 transparent transparent transparent !important
+}
+
+.gradient~.casa-color-border-seta-left {
+    border-color: transparent #075c99 transparent transparent !important
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline-color: #075c99 !important
+}
+
+.gradient {
+    background: #075c99 !important;
+    background: -moz-linear-gradient(70deg, #075c99 0, #075c99 51%, #faae1a 100%) !important;
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0, #075c99), color-stop(51%, #075c99), color-stop(100%, #faae1a)) !important;
+    background: -webkit-linear-gradient(70deg, #075c99 0, #075c99 51%, #faae1a 100%) !important;
+    background: -o-linear-gradient(70deg, #075c99 0, #075c99 51%, #faae1a 100%) !important;
+    background: -ms-linear-gradient(70deg, #075c99 0, #075c99 51%, #faae1a 100%) !important;
+    background: linear-gradient(70deg, #075c99 0, #075c99 51%, #faae1a 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradient-filter-color-start', endColorstr='$gradient-filter-color-end', GradientType=1) !important
+}
+
+.gradient-hover:hover {
+    background: #d97615 !important;
+    background: -moz-linear-gradient(70deg, #ff9415 0, #ffc046 51%, #ffca14 100%) !important;
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0, #ff9415), color-stop(51%, #ffc046), color-stop(100%, #ffc046)) !important;
+    background: -webkit-linear-gradient(70deg, #ff9415 0, #ffc046 51%, #ffca14 100%) !important;
+    background: -o-linear-gradient(70deg, #ff9415 0, #ffc046 51%, #ffca14 100%) !important;
+    background: -ms-linear-gradient(70deg, #ff9415 0, #ffc046 51%, #ffca14 100%) !important;
+    background: linear-gradient(70deg, #ff9415 0, #ffc046 51%, #ffca14 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradient-hover-filter-color-start', endColorstr='$gradient-hover-filter-color-end', GradientType=1) !important
+}
+
+.gradient-2 {
+    background: #ffa435;
+    background: -moz-linear-gradient(top, #ffa435 0, #075c99 100%);
+    background: -webkit-linear-gradient(top, #ffa435 0, #075c99 100%);
+    background: -o-linear-gradient(top, #ffa435 0, #075c99 100%);
+    background: -ms-linear-gradient(top, #ffa435 0, #075c99 100%);
+    background: linear-gradient(to bottom, #ffa435 0, #075c99 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$gradient-2-filter-color-start', endColorstr='$gradient-2-filter-color-end', GradientType=1) !important
+}
+
+.bm-fale-conosco a:hover {
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+    color: #075c99 !important;
+    text-decoration: none
+}
+
+#mainHeader .logo-page {
+    max-width: 200px;
+    width: 200px
+}
+
+#noticia .logo-page {
+    padding: 5px 0 0 0
+}

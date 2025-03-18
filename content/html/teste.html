@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Social - SESI Roraima</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Atendimento Social - SESI Roraima (2024)</h2>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Tema</th>
+                <th>Linha de Negócio</th>
+                <th>Ação Finalística</th>
+                <th>Região</th>
+                <th>Previsto</th>
+                <th>Realizado</th>
+                <th>Índice de Realização</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch("https://sistematransparenciaweb.com.br/api-atendimento-social/publico/atendimento-social?entidade=sesi&departamento=sesi-rr&ano=2024");
+                const data = await response.json();
+
+                const tableBody = document.querySelector("#data-table tbody");
+                tableBody.innerHTML = "";
+
+                const temas = data.temas;
+
+                for (const temaKey in temas) {
+                    const tema = temas[temaKey];
+                    for (const linhaNegocioKey in tema.linhasNegocio) {
+                        const linhaNegocio = tema.linhasNegocio[linhaNegocioKey];
+                        for (const acaoFinalisticaKey in linhaNegocio.acoesFinalisticas) {
+                            const acaoFinalistica = linhaNegocio.acoesFinalisticas[acaoFinalisticaKey];
+                            const dadosQuantitativos = acaoFinalistica.dadosQuantitativos.NORTE;
+
+                            if (dadosQuantitativos) {
+                                const row = document.createElement("tr");
+                                row.innerHTML = `
+                                    <td>${tema.nomeTema}</td>
+                                    <td>${linhaNegocio.nomeLinhaNegocio}</td>
+                                    <td>${acaoFinalistica.nomeAcaoFinalistica}</td>
+                                    <td>${dadosQuantitativos.regiao}</td>
+                                    <td>${dadosQuantitativos.previsto}</td>
+                                    <td>${dadosQuantitativos.realizado}</td>
+                                    <td>${dadosQuantitativos.indiceRealizacao || "N/A"}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Erro ao buscar os dados:", error);
+            }
+        }
+
+        fetchData();
+    </script>
+
+</body>
+</html>

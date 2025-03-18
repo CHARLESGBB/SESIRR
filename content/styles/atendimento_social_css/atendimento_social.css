@@ -1,0 +1,100 @@
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Container principal */
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/* Filtros (Ano e Botões) */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Botões */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: green;
+    background-color: white;
+    border: 2px solid green;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.buttons button:hover {
+    background-color: #00ff15;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #008000;
+    color: white;
+}
+
+/* Temas */
+.tema {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Seletor de Ano */
+.ano-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#ano {
+    padding: 8px 12px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    appearance: auto;
+}
+
+/* Fonte e Notas */
+.info-section {
+    margin-top: 10px;
+    font-size: 14px;
+    color: black;
+}
+
+/* Remove a barra de rolagem do elemento pai */
+#aplicacaoRLCC_gratuidade {
+    overflow: hidden; /* Impede a barra de rolagem */
+}
+
+/* Garante que a tabela ocupe toda a largura disponível */
+#aplicacaoRLCC_gratuidade table {
+    width: 100%;
+    table-layout: fixed; /* Evita que a tabela ultrapasse a largura do elemento pai */
+}

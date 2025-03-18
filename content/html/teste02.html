@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Social - SESI Roraima</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SheetJS/0.18.7/xlsx.full.min.js"></script> <!-- Biblioteca para exportar XLSX -->
+    <style>
+        /* Definição da fonte padrão */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container principal */
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        /* Área de filtros (Ano e Botões de Download) */
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Botões de download (XLSX e ODS) */
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 10px 15px;
+            font-size: 16px;
+            color: green;
+            background-color: white;
+            border: 2px solid green;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px; /* Cantos arredondados */
+        }
+
+        .buttons button:hover {
+            background-color: #00ff15; /* Verde claro no hover */
+        }
+
+        /* Estilos para a tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #008000;
+            color: white;
+        }
+
+        /* Estilização da linha de Tema */
+        .tema {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Estilo para o seletor de ano */
+        .ano-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #ano {
+            padding: 8px 12px;
+            font-size: 16px;
+            color: black;
+            background-color: white;
+            border: 1px solid #ccc; /* Borda fina cinza */
+            cursor: pointer;
+            border-radius: 5px; /* Cantos levemente arredondados */
+            appearance: auto;
+            -webkit-appearance: auto;
+            -moz-appearance: auto;
+        }
+
+        /* Estiliza o rótulo "Ano" para ficar verde */
+        label[for="ano"] {
+            font-weight: bold;
+            color: green;
+            margin-bottom: 5px;
+        }
+        /* Estiliza o fontes e notas */
+        .info-section {
+            margin-top: 40px; /* Adiciona espaço entre a tabela e o texto */
+            font-size: 14px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Área de Filtros -->
+        <div class="filters">
+            <!-- Seletor de Ano -->
+            <div class="ano-container">
+                <label for="ano">Ano</label>
+                <select id="ano" onchange="fetchData()"></select>
+            </div>
+
+            <!-- Botões para exportação dos dados -->
+            <div class="buttons">
+                <button onclick="exportToExcel()">Salvar (XLSX)</button>
+                <button onclick="exportToOds()">Salvar (ODS)</button>
+            </div>
+        </div>
+
+        <!-- Tabela de Dados -->
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Ações Finalísticas</th>
+                    <th>Previsão Anual</th>
+                    <th>Realizado (Jan - Dez)</th>
+                    <th>% Execução</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <!-- Seção de Fonte e Notas abaixo da tabela -->
+        <div class="info-section">
+            <p><strong>Fonte:</strong> SESI-RR</p>
+            <p><strong>Notas:</strong></p>
+        </div>
+
+    </div>
+
+    <script>
+        // Definição de variáveis globais para facilitar manutenção
+        const entidade = "sesi";
+        const departamento = "sesi-rr";
+        const baseURL = "https://sistematransparenciaweb.com.br/api-atendimento-social/publico/atendimento-social";
+
+        const anoSelect = document.getElementById("ano");
+
+        /**
+         * Função para verificar os anos válidos na API
+         * Faz requisições paralelas e retorna apenas os anos que possuem dados disponíveis
+         */
+        async function verificarAnosValidos() {
+            const anoAtual = new Date().getFullYear();
+            const anosParaTestar = Array.from({ length: 10 }, (_, i) => anoAtual - i);
+            let anosValidos = [];
+
+            try {
+                const respostas = await Promise.all(
+                    anosParaTestar.map(ano =>
+                        fetch(`${baseURL}?entidade=${entidade}&departamento=${departamento}&ano=${ano}`)
+                        .then(res => res.json().then(data => ({ ano, data })))
+                        .catch(() => null)
+                    )
+                );
+
+                anosValidos = respostas
+                    .filter(res => res && res.data.temas && Object.keys(res.data.temas).length > 0)
+                    .map(res => res.ano);
+
+                if (anosValidos.length > 0) {
+                    popularSelecaoAnos(anosValidos);
+                    fetchData();
+                } else {
+                    console.error("Nenhum dado válido encontrado.");
+                }
+            } catch (error) {
+                console.error("Erro ao verificar anos:", error);
+            }
+        }
+
+        /**
+         * Popula a seleção de ano com os anos válidos encontrados na API
+         */
+        function popularSelecaoAnos(anosValidos) {
+            anosValidos.forEach(ano => {
+                let option = document.createElement("option");
+                option.value = ano;
+                option.textContent = ano;
+                anoSelect.appendChild(option);
+            });
+        }
+
+        /**
+         * Função para buscar os dados da API e exibi-los na tabela
+         */
+        async function fetchData() {
+            let anoSelecionado = anoSelect.value;
+            try {
+                const response = await fetch(`${baseURL}?entidade=${entidade}&departamento=${departamento}&ano=${anoSelecionado}`);
+                const data = await response.json();
+
+                const tableBody = document.querySelector("#data-table tbody");
+                tableBody.innerHTML = "";
+
+                const temas = data.temas;
+
+                for (const temaKey in temas) {
+                    const tema = temas[temaKey];
+
+                    const temaRow = document.createElement("tr");
+                    temaRow.innerHTML = `<td colspan="4" class="tema">${tema.nomeTema}</td>`;
+                    tableBody.appendChild(temaRow);
+
+                    for (const linhaNegocioKey in tema.linhasNegocio) {
+                        const linhaNegocio = tema.linhasNegocio[linhaNegocioKey];
+
+                        for (const acaoFinalisticaKey in linhaNegocio.acoesFinalisticas) {
+                            const acaoFinalistica = linhaNegocio.acoesFinalisticas[acaoFinalisticaKey];
+                            const dadosQuantitativos = acaoFinalistica.dadosQuantitativos.NORTE;
+
+                            if (dadosQuantitativos) {
+                                const row = document.createElement("tr");
+                                row.innerHTML = `
+                                    <td>${acaoFinalistica.nomeAcaoFinalistica}</td>
+                                    <td>${dadosQuantitativos.previsto}</td>
+                                    <td>${dadosQuantitativos.realizado || "-"}</td>
+                                    <td>${dadosQuantitativos.indiceRealizacao || "0.00%"}</td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Erro ao buscar os dados:", error);
+            }
+        }
+
+        /**
+         * Função para baixar o arquivo XLSX diretamente da API
+         */
+        function exportToExcel() {
+            let anoSelecionado = anoSelect.value;
+            const downloadURL = `${baseURL}/export?entidade=${entidade}&departamento=${departamento}&ano=${anoSelecionado}&formatoExportacao=XLSX`;
+            window.location.href = downloadURL;
+        }
+
+        verificarAnosValidos();
+    </script>
+
+</body>
+</html>

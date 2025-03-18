@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Social - SESI Roraima</title>
+    
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="content/styles/atendimento_social_css/atendimento_social.css">
+    
+    <!-- Biblioteca para exportar XLSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SheetJS/0.18.7/xlsx.full.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Área de Filtros -->
+        <div class="filters">
+            <div class="ano-container">
+                <label for="ano">Ano</label>
+                <select id="ano"></select>
+            </div>
+
+            <!-- Botões para exportação dos dados -->
+            <div class="buttons">
+                <button id="btnExcel">Salvar (XLSX)</button>
+                <button id="btnOds">Salvar (ODS)</button>
+            </div>
+        </div>
+
+        <!-- Tabela de Dados -->
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Ações Finalísticas</th>
+                    <th>Previsão Anual</th>
+                    <th>Realizado (Jan - Dez)</th>
+                    <th>% Execução</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Seção de Fonte e Notas -->
+        <div class="info-section">
+            <p><strong>Fonte:</strong> SESI-RR</p>
+            <p><strong>Notas:</strong></p>
+        </div>
+    </div>
+
+    <!-- Importação do JavaScript -->
+    <script src="content/script/atendimento_social_js/atendimento_social.js"></script>
+
+</body>
+</html>
